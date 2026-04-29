@@ -1,11 +1,11 @@
 :root {
-  --bg: #090909;
-  --bg-soft: #101010;
-  --text: #ececec;
-  --muted: #a0a0a0;
-  --line: #1f1f1f;
-  --accent: #ff4d00;
-  --accent2: #b7ff00;
+  --bg: #050505;
+  --bg-soft: #0d0a0d;
+  --text: #f2f2f2;
+  --muted: #8f8f8f;
+  --line: #201820;
+  --accent: #b3002d;
+  --accent2: #8d00ff;
 }
 
 * {
@@ -27,8 +27,23 @@ body {
   inset: 0;
   pointer-events: none;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.05;
+  opacity: 0.08;
   z-index: 20;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: overlay;
+  animation: scanShift 8s linear infinite;
 }
 
 .bg-orb {
@@ -38,7 +53,7 @@ body {
   border-radius: 50%;
   filter: blur(90px);
   pointer-events: none;
-  opacity: 0.14;
+  opacity: 0.2;
   z-index: 0;
   animation: drift 16s ease-in-out infinite alternate;
 }
@@ -46,13 +61,13 @@ body {
 .orb-a {
   top: -16vw;
   left: -10vw;
-  background: radial-gradient(circle, var(--accent), transparent 60%);
+  background: radial-gradient(circle, var(--accent), transparent 62%);
 }
 
 .orb-b {
   bottom: -20vw;
   right: -14vw;
-  background: radial-gradient(circle, var(--accent2), transparent 60%);
+  background: radial-gradient(circle, var(--accent2), transparent 62%);
   animation-duration: 20s;
 }
 
@@ -60,7 +75,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: rgba(0, 0, 0, 0.92);
+  background: radial-gradient(circle at center, rgba(35, 0, 10, 0.32), rgba(0, 0, 0, 0.97));
   display: grid;
   place-items: center;
   transition: opacity 0.8s ease, visibility 0.8s ease;
@@ -79,7 +94,8 @@ body {
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #d9d9d9;
+  color: #f0f0f0;
+  text-shadow: 0 0 8px rgba(179, 0, 45, 0.65);
 }
 
 .intro-meta {
@@ -90,26 +106,41 @@ body {
   gap: 2px;
   font-size: 11px;
   text-transform: uppercase;
-  color: #d9d9d9;
+  color: #f0f0f0;
 }
 
 .enter-btn {
-  width: 190px;
-  height: 190px;
+  width: 230px;
+  height: 230px;
   border-radius: 50%;
-  border: 2px solid #d7d7d7;
-  background: transparent;
-  color: #ececec;
+  border: 2px solid #d6d6d6;
+  background: rgba(5, 5, 5, 0.55);
+  color: #f2f2f2;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.08em;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: grid;
+  align-content: center;
+  gap: 10px;
 }
 
 .enter-btn:hover {
   transform: scale(1.04);
-  box-shadow: 0 0 36px rgba(255, 255, 255, 0.14);
+  border-color: var(--accent);
+  box-shadow: 0 0 46px rgba(179, 0, 45, 0.3);
+}
+
+.enter-main {
+  display: block;
+}
+
+.enter-sub {
+  display: block;
+  font-size: 10px;
+  color: #c4c4c4;
+  text-transform: uppercase;
 }
 
 .section {
@@ -191,6 +222,12 @@ h2 {
 .btn.ghost {
   background: transparent;
   color: var(--text);
+}
+
+.vamp-title {
+  text-shadow:
+    0 0 10px rgba(179, 0, 45, 0.4),
+    0 0 26px rgba(141, 0, 255, 0.25);
 }
 
 .muted {
@@ -280,7 +317,7 @@ a:hover {
 .glitch::before {
   color: var(--accent);
   transform: translate(1px, 0);
-  opacity: 0.6;
+  opacity: 0.75;
   clip-path: inset(40% 0 30% 0);
   animation: g1 2.2s infinite linear alternate;
 }
@@ -288,7 +325,7 @@ a:hover {
 .glitch::after {
   color: var(--accent2);
   transform: translate(-1px, 0);
-  opacity: 0.4;
+  opacity: 0.6;
   clip-path: inset(10% 0 70% 0);
   animation: g2 1.7s infinite linear alternate;
 }
@@ -310,8 +347,25 @@ a:hover {
     transform: translate(0, 0) scale(1);
   }
   100% {
-    transform: translate(8vw, 6vh) scale(1.14);
+    transform: translate(10vw, 8vh) scale(1.18);
   }
+}
+
+@keyframes scanShift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(14px);
+  }
+}
+
+body.glitch-pulse .vamp-title::before {
+  transform: translate(5px, -1px);
+}
+
+body.glitch-pulse .vamp-title::after {
+  transform: translate(-5px, 1px);
 }
 
 @media (max-width: 1000px) {

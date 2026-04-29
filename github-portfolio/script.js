@@ -48,6 +48,13 @@ for (const project of projects) {
 }
 
 enterSite.addEventListener("click", () => {
+  document.body.classList.add("glitch-pulse")
   intro.classList.add("hidden")
   document.body.classList.add("site-ready")
+  setTimeout(() => document.body.classList.remove("glitch-pulse"), 420)
 })
+
+setInterval(() => {
+  document.body.classList.add("glitch-pulse")
+  setTimeout(() => document.body.classList.remove("glitch-pulse"), 140)
+}, 3400)
