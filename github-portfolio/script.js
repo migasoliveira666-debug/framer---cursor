@@ -22,6 +22,7 @@ const intro = document.getElementById("intro")
 const enterSite = document.getElementById("enterSite")
 const introTerminal = document.getElementById("introTerminal")
 const targetCursor = document.getElementById("targetCursor")
+const homeReload = document.getElementById("homeReload")
 
 function renderCard(project, targetGrid) {
   const media = project.video
@@ -98,6 +99,11 @@ function runBootSequence(onDone) {
     lineEl.textContent = lines[index]
   }, 230)
 }
+
+homeReload.addEventListener("click", (event) => {
+  event.preventDefault()
+  window.location.reload()
+})
 
 function playBootSound() {
   try {
