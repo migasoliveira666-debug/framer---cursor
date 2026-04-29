@@ -323,6 +323,7 @@ h2 {
     0 0 26px rgba(141, 0, 255, 0.25);
 }
 
+<<<<<<< HEAD
 .bot-title {
   background: linear-gradient(90deg, #ffffff 0%, #ff8fab 28%, #b174ff 52%, #ffffff 100%);
   -webkit-background-clip: text;
@@ -334,6 +335,8 @@ h2 {
   filter: saturate(1.2) contrast(1.08);
 }
 
+=======
+>>>>>>> parent of 2651109 (v5)
 .muted {
   color: var(--muted);
 }
@@ -420,32 +423,30 @@ a:hover {
 
 .glitch::before {
   color: var(--accent);
-  transform: translate(2px, 0);
-  opacity: 0.8;
-  clip-path: inset(30% 0 46% 0);
-  animation: g1 1.35s infinite linear alternate;
+  transform: translate(1px, 0);
+  opacity: 0.75;
+  clip-path: inset(40% 0 30% 0);
+  animation: g1 2.2s infinite linear alternate;
 }
 
 .glitch::after {
   color: var(--accent2);
-  transform: translate(-2px, 0);
-  opacity: 0.68;
-  clip-path: inset(62% 0 8% 0);
-  animation: g2 1.2s infinite linear alternate;
+  transform: translate(-1px, 0);
+  opacity: 0.6;
+  clip-path: inset(10% 0 70% 0);
+  animation: g2 1.7s infinite linear alternate;
 }
 
 @keyframes g1 {
-  0% { clip-path: inset(8% 0 77% 0); }
-  33% { clip-path: inset(52% 0 18% 0); }
-  66% { clip-path: inset(22% 0 50% 0); }
-  100% { clip-path: inset(66% 0 8% 0); }
+  0% { clip-path: inset(12% 0 70% 0); }
+  50% { clip-path: inset(60% 0 18% 0); }
+  100% { clip-path: inset(36% 0 40% 0); }
 }
 
 @keyframes g2 {
-  0% { clip-path: inset(72% 0 6% 0); }
-  33% { clip-path: inset(16% 0 62% 0); }
-  66% { clip-path: inset(40% 0 34% 0); }
-  100% { clip-path: inset(6% 0 80% 0); }
+  0% { clip-path: inset(68% 0 10% 0); }
+  50% { clip-path: inset(30% 0 48% 0); }
+  100% { clip-path: inset(42% 0 30% 0); }
 }
 
 @keyframes drift {
@@ -466,17 +467,6 @@ a:hover {
   }
   100% {
     transform: translateY(14px);
-  }
-}
-
-@keyframes botShine {
-  0% {
-    background-position: 0% center;
-    filter: drop-shadow(0 0 6px rgba(179, 0, 45, 0.3));
-  }
-  100% {
-    background-position: 200% center;
-    filter: drop-shadow(0 0 12px rgba(141, 0, 255, 0.38));
   }
 }
 
