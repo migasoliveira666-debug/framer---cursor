@@ -23,6 +23,7 @@ const enterSite = document.getElementById("enterSite")
 const introTerminal = document.getElementById("introTerminal")
 const targetCursor = document.getElementById("targetCursor")
 const homeReload = document.getElementById("homeReload")
+const topLinks = document.querySelectorAll(".top-link")
 
 function renderCard(project, targetGrid) {
   const media = project.video
@@ -66,11 +67,13 @@ setInterval(() => {
 }, 3400)
 
 window.addEventListener("mousemove", (event) => {
+  if (!targetCursor) return
   targetCursor.style.left = `${event.clientX}px`
   targetCursor.style.top = `${event.clientY}px`
 })
 
 window.addEventListener("mouseover", (event) => {
+  if (!targetCursor) return
   const hoverable = event.target.closest("a, button, .card")
   targetCursor.style.transform = hoverable
     ? "translate(-50%, -50%) scale(1.35)"
@@ -103,6 +106,26 @@ function runBootSequence(onDone) {
 homeReload.addEventListener("click", (event) => {
   event.preventDefault()
   window.location.reload()
+})
+
+const sectionMap = ["bio", "projects", "contacts"]
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY + 140
+  let active = ""
+  for (const id of sectionMap) {
+    const section = document.getElementById(id)
+    if (!section) continue
+    if (scrollY >= section.offsetTop) active = id
+  }
+
+  topLinks.forEach((link) => {
+    const href = link.getAttribute("href")
+    if (href === "#") {
+      link.classList.toggle("active", active === "")
+      return
+    }
+    link.classList.toggle("active", href === `#${active}`)
+  })
 })
 
 function playBootSound() {

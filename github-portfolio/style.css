@@ -95,6 +95,16 @@ body {
   animation-duration: 20s;
 }
 
+.orb-c {
+  top: 28vh;
+  left: 42vw;
+  width: 26vw;
+  height: 26vw;
+  opacity: 0.12;
+  background: radial-gradient(circle, #ffffff, transparent 68%);
+  animation-duration: 26s;
+}
+
 .intro {
   position: fixed;
   inset: 0;
@@ -200,6 +210,45 @@ body {
   align-items: center;
 }
 
+.top-nav {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(
+    120deg,
+    rgba(0, 0, 0, 0.78),
+    rgba(40, 8, 24, 0.55),
+    rgba(14, 0, 24, 0.62)
+  );
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+}
+
+.top-link {
+  text-decoration: none;
+  color: #ececec;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.top-link:hover,
+.top-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
 .hidden-on-load {
   opacity: 0;
   transform: translateY(24px);
@@ -275,13 +324,14 @@ h2 {
 }
 
 .bot-title {
-  background: linear-gradient(90deg, #ffffff 0%, #ff9fc0 28%, #c58cff 52%, #ffffff 100%);
+  background: linear-gradient(90deg, #ffffff 0%, #ff8fab 28%, #b174ff 52%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   background-size: 200% auto;
   animation: botShine 4.2s linear infinite;
   letter-spacing: 0.02em;
+  filter: saturate(1.2) contrast(1.08);
 }
 
 .muted {
@@ -402,6 +452,9 @@ a:hover {
   0% {
     transform: translate(0, 0) scale(1);
   }
+  50% {
+    transform: translate(-7vw, 5vh) scale(1.1);
+  }
   100% {
     transform: translate(10vw, 8vh) scale(1.18);
   }
@@ -447,6 +500,18 @@ body.glitch-pulse .vamp-title::after {
   }
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .top-nav {
+    width: calc(100% - 22px);
+    justify-content: space-between;
+    top: 8px;
+    padding: 7px;
+  }
+
+  .top-link {
+    font-size: 10px;
+    padding: 8px 9px;
   }
 
   body {
