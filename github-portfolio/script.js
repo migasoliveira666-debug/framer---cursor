@@ -20,6 +20,8 @@ const sculptureGrid = document.getElementById("sculptureGrid")
 const videoGrid = document.getElementById("videoGrid")
 const intro = document.getElementById("intro")
 const enterSite = document.getElementById("enterSite")
+const introTerminal = document.getElementById("introTerminal")
+const targetCursor = document.getElementById("targetCursor")
 
 function renderCard(project, targetGrid) {
   const media = project.video
@@ -48,9 +50,12 @@ for (const project of projects) {
 }
 
 enterSite.addEventListener("click", () => {
+  playBootSound()
+  runBootSequence(() => {
+    intro.classList.add("hidden")
+    document.body.classList.add("site-ready")
+  })
   document.body.classList.add("glitch-pulse")
-  intro.classList.add("hidden")
-  document.body.classList.add("site-ready")
   setTimeout(() => document.body.classList.remove("glitch-pulse"), 420)
 })
 
@@ -58,3 +63,58 @@ setInterval(() => {
   document.body.classList.add("glitch-pulse")
   setTimeout(() => document.body.classList.remove("glitch-pulse"), 140)
 }, 3400)
+
+window.addEventListener("mousemove", (event) => {
+  targetCursor.style.left = `${event.clientX}px`
+  targetCursor.style.top = `${event.clientY}px`
+})
+
+window.addEventListener("mouseover", (event) => {
+  const hoverable = event.target.closest("a, button, .card")
+  targetCursor.style.transform = hoverable
+    ? "translate(-50%, -50%) scale(1.35)"
+    : "translate(-50%, -50%) scale(1)"
+})
+
+function runBootSequence(onDone) {
+  const lines = [
+    "> loading opium shell...",
+    "> decrypting archive channels...",
+    "> enabling visual glitch engine...",
+    "> access granted.",
+  ]
+
+  let index = 0
+  const lineEl = introTerminal.querySelector("p")
+  lineEl.textContent = lines[0]
+
+  const timer = setInterval(() => {
+    index += 1
+    if (index >= lines.length) {
+      clearInterval(timer)
+      setTimeout(onDone, 260)
+      return
+    }
+    lineEl.textContent = lines[index]
+  }, 230)
+}
+
+function playBootSound() {
+  try {
+    const context = new (window.AudioContext || window.webkitAudioContext)()
+    const oscillator = context.createOscillator()
+    const gain = context.createGain()
+    oscillator.type = "sawtooth"
+    oscillator.frequency.setValueAtTime(110, context.currentTime)
+    oscillator.frequency.exponentialRampToValueAtTime(46, context.currentTime + 0.32)
+    gain.gain.setValueAtTime(0.0001, context.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.16, context.currentTime + 0.03)
+    gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.36)
+    oscillator.connect(gain)
+    gain.connect(context.destination)
+    oscillator.start()
+    oscillator.stop(context.currentTime + 0.37)
+  } catch (error) {
+    console.log("Boot sound unavailable", error)
+  }
+}

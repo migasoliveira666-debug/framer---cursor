@@ -20,6 +20,30 @@ body {
   color: var(--text);
   font-family: Inter, Arial, sans-serif;
   overflow-x: hidden;
+  cursor: none;
+}
+
+.target-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(242, 242, 242, 0.75);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  mix-blend-mode: difference;
+}
+
+.target-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffffff;
 }
 
 .noise {
@@ -107,6 +131,26 @@ body {
   font-size: 11px;
   text-transform: uppercase;
   color: #f0f0f0;
+}
+
+.intro-terminal {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  max-width: 420px;
+  bottom: 70px;
+  border: 1px solid rgba(242, 242, 242, 0.15);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #d8d8d8;
+}
+
+.intro-terminal p {
+  margin: 0;
+  min-height: 16px;
+  white-space: pre-wrap;
 }
 
 .enter-btn {
@@ -380,5 +424,13 @@ body.glitch-pulse .vamp-title::after {
   }
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  body {
+    cursor: auto;
+  }
+
+  .target-cursor {
+    display: none;
   }
 }
