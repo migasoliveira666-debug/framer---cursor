@@ -19,6 +19,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 .noise {
@@ -30,16 +31,109 @@ body {
   z-index: 20;
 }
 
+.bg-orb {
+  position: fixed;
+  width: 42vw;
+  height: 42vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  opacity: 0.14;
+  z-index: 0;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+
+.orb-a {
+  top: -16vw;
+  left: -10vw;
+  background: radial-gradient(circle, var(--accent), transparent 60%);
+}
+
+.orb-b {
+  bottom: -20vw;
+  right: -14vw;
+  background: radial-gradient(circle, var(--accent2), transparent 60%);
+  animation-duration: 20s;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.92);
+  display: grid;
+  place-items: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.intro.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.intro-tag {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  margin: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #d9d9d9;
+}
+
+.intro-meta {
+  position: absolute;
+  left: 18px;
+  bottom: 14px;
+  display: grid;
+  gap: 2px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #d9d9d9;
+}
+
+.enter-btn {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 2px solid #d7d7d7;
+  background: transparent;
+  color: #ececec;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.enter-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 36px rgba(255, 255, 255, 0.14);
+}
+
 .section {
   border-top: 1px solid var(--line);
   padding: 88px 24px;
   position: relative;
+  z-index: 2;
 }
 
 .hero {
   min-height: 90vh;
   display: grid;
   align-items: center;
+}
+
+.hidden-on-load {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+body.site-ready .hidden-on-load {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .container {
@@ -108,6 +202,17 @@ h2 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+.category-header {
+  margin-top: 42px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.category-header h3 {
+  font-size: 18px;
+  letter-spacing: 0.08em;
 }
 
 .card {
@@ -198,6 +303,15 @@ a:hover {
   0% { clip-path: inset(68% 0 10% 0); }
   50% { clip-path: inset(30% 0 48% 0); }
   100% { clip-path: inset(42% 0 30% 0); }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(8vw, 6vh) scale(1.14);
+  }
 }
 
 @media (max-width: 1000px) {
