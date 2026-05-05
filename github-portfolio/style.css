@@ -323,7 +323,6 @@ h2 {
     0 0 26px rgba(141, 0, 255, 0.25);
 }
 
-<<<<<<< HEAD
 .bot-title {
   background: linear-gradient(90deg, #ffffff 0%, #ff8fab 28%, #b174ff 52%, #ffffff 100%);
   -webkit-background-clip: text;
@@ -335,8 +334,6 @@ h2 {
   filter: saturate(1.2) contrast(1.08);
 }
 
-=======
->>>>>>> parent of 2651109 (v5)
 .muted {
   color: var(--muted);
 }

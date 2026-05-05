@@ -22,11 +22,8 @@ const intro = document.getElementById("intro")
 const enterSite = document.getElementById("enterSite")
 const introTerminal = document.getElementById("introTerminal")
 const targetCursor = document.getElementById("targetCursor")
-<<<<<<< HEAD
 const homeReload = document.getElementById("homeReload")
 const topLinks = document.querySelectorAll(".top-link")
-=======
->>>>>>> parent of 2651109 (v5)
 
 function renderCard(project, targetGrid) {
   const media = project.video
@@ -106,7 +103,6 @@ function runBootSequence(onDone) {
   }, 230)
 }
 
-<<<<<<< HEAD
 homeReload.addEventListener("click", (event) => {
   event.preventDefault()
   window.location.reload()
@@ -132,8 +128,6 @@ window.addEventListener("scroll", () => {
   })
 })
 
-=======
->>>>>>> parent of 2651109 (v5)
 function playBootSound() {
   try {
     const context = new (window.AudioContext || window.webkitAudioContext)()
